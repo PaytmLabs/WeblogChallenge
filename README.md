@@ -27,7 +27,7 @@ The challenge is to make make analytical observations about the data using the d
 
 ###Additional notes:
 - You are allowed to use whatever libraries/parsers/solutions you can find provided you can explain the functions you are implementing in detail.
-- IP addresses do not guarantee distinct users, but this is the limitations of the data. As a bonus, consider what additional data would help make better analytical conclusions
+- IP addresses do not guarantee distinct users, but this is the limitation of the data. As a bonus, consider what additional data would help make better analytical conclusions
 - For this dataset, complete the sessionization by time window rather than navigation. Feel free to determine the best session window time on your own, or start with 15 minutes.
 
 
