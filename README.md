@@ -41,3 +41,11 @@ B. Complete the processing and analytics as defined first to the best of your ab
 C. Place notes in your code to help with clarity where appropriate. Make it readable enough to present to the Paytm Labs interview team.
 
 D. Complete your work in your own github repo and send the results to us and/or present them during your interview.
+
+##What are we looking for? What does this prove?
+
+We want to see how you handle:
+- New technologies and frameworks
+- Messy (ie real) data
+- Understanding data transformation
+This is not a pass or fail test, we want to hear about your challenges and your successes with this particular problem.
