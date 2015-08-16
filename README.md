@@ -29,6 +29,9 @@ The challenge is to make make analytical observations about the data using the d
 - You are allowed to use whatever libraries/parsers/solutions you can find provided you can explain the functions you are implementing in detail.
 - IP addresses do not guarantee distinct users, but this is the limitation of the data. As a bonus, consider what additional data would help make better analytical conclusions
 - For this dataset, complete the sessionization by time window rather than navigation. Feel free to determine the best session window time on your own, or start with 15 minutes.
+- The log file was taken from an AWS Elastic Load Balancer:
+http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/access-log-collection.html#access-log-entry-format
+
 
 
 ##How to complete this challenge:
