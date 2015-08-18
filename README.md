@@ -18,11 +18,17 @@ The challenge is to make make analytical observations about the data using the d
 
 ###Tools allowed (in no particular order):
 - Spark (any language, but prefer Scala)
-- Hive
 - Pig
 - MapReduce (Hadoop 2.x only)
 - Flink
 - Cascading, Cascalog, or Scalding
+- Hive
+If you need Hadoop, we suggest 
+HDP Sandbox:
+http://hortonworks.com/hdp/downloads/
+or 
+CDH QuickStart VM:
+http://www.cloudera.com/content/cloudera/en/downloads.html
 
 
 ###Additional notes:
