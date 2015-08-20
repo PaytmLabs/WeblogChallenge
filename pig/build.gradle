@@ -1,0 +1,58 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+group = 'web.log.challenge'
+version = '0.1'
+sourceCompatibility = '1.7'
+
+idea {
+    project {
+        languageLevel = '1.7'
+    }
+}
+
+project.ext {
+    HADOOP_VERSION='2.6.0'
+    PIG_VERSION='0.14.0'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    // pig
+    compile "org.apache.pig:pig:$PIG_VERSION"
+    testCompile "org.apache.pig:pigunit:$PIG_VERSION"
+
+    // hadoop client
+    compile "org.apache.hadoop:hadoop-common:$HADOOP_VERSION"
+    compile "org.apache.hadoop:hadoop-mapreduce-client-core:$HADOOP_VERSION"
+
+    // utils
+    compile 'log4j:log4j:1.2.16'
+    compile 'org.slf4j:slf4j-api:1.6.1'
+    compile 'org.slf4j:slf4j-log4j12:1.6.1'
+    compile 'commons-logging:commons-logging:1.0.4'
+    compile 'joda-time:joda-time:2.3'
+
+    testCompile 'org.mockito:mockito-all:1.8.4'
+    testCompile 'junit:junit:4.+'
+}
+
+def saveDir="${rootProject.projectDir}/build/libs"
+
+task saveDependencies << {
+    ant.delete (dir:saveDir, failonerror:false)
+    configurations.each { config ->
+        config.each { f ->
+            ant.copy (file: f, overwrite:true, todir:saveDir)
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
