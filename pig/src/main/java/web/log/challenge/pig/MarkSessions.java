@@ -6,6 +6,7 @@ import org.apache.pig.impl.logicalLayer.FrontendException;
 import org.apache.pig.impl.logicalLayer.schema.Schema;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
+import org.joda.time.Seconds;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -37,7 +38,7 @@ public class MarkSessions extends AccumulatorEvalFunc<DataBag> {
                 start_time = access_time;
             }
             expire_time = access_time.plus(idleMilliseconds);
-            final Integer duration = new Period(start_time, access_time).getSeconds();
+            final Integer duration = Seconds.secondsBetween(start_time, access_time).getSeconds();
 
             final Tuple enhanced = TupleFactory.getInstance().newTuple(hit.getAll());
             enhanced.append(session_id);
