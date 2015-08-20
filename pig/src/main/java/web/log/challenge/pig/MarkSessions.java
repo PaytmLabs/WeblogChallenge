@@ -14,11 +14,11 @@ import java.util.UUID;
  * Identifies sessions in log entries, previously grouped by user key
  */
 public class MarkSessions extends AccumulatorEvalFunc<DataBag> {
-    private final int idleSeconds;
+    private final int idleMilliseconds;
     private DataBag sessions;
 
     public MarkSessions(String idleSeconds) {
-        this.idleSeconds = Integer.valueOf(idleSeconds);
+        this.idleMilliseconds = Integer.valueOf(idleSeconds) * 1000;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class MarkSessions extends AccumulatorEvalFunc<DataBag> {
                 session_id = UUID.randomUUID().toString();
                 start_time = access_time;
             }
-            expire_time = access_time.plus(idleSeconds);
+            expire_time = access_time.plus(idleMilliseconds);
             final Integer duration = new Period(start_time, access_time).getSeconds();
 
             final Tuple enhanced = TupleFactory.getInstance().newTuple(hit.getAll());
