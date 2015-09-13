@@ -1,3 +1,4 @@
+import java.net.URL
 import java.util.UUID
 
 import org.apache.spark.{SparkContext, SparkConf}
@@ -20,7 +21,7 @@ object WebLogSessionize {
     val hits = logData
         .map( logPattern.findFirstMatchIn(_))
         .filter( !_.isEmpty) // filter out lines that haven't matched
-        .map( line => ( line.get.subgroups(1), List( ((line.get.subgroups(0), line.get.subgroups(2) )) ))) // ip -> time, url
+        .map( line => ( line.get.subgroups(1), List( ((line.get.subgroups(0), new URL(line.get.subgroups(2)).getPath )) ))) // ip -> time, url
 
     // 1. Sessionize the web log by IP
 
