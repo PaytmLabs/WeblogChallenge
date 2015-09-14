@@ -11,13 +11,18 @@ import scala.collection.mutable.{Buffer, ListBuffer}
 object WebLogSessionize {
 
   def main(args: Array[String]) {
-    val conf = new SparkConf().setAppName("Web Log").setMaster("local[4]")
+    if( args.length != 2) {
+      println("Usage: WebLogSessionize [input path] [output path]")
+      return
+    }
+
+    val conf = new SparkConf().setAppName("Web Log")
     val sc = new SparkContext(conf)
 
-    val logData = sc.textFile("../data/2015_07_22_mktplace_shop_web_log_sample.log.gz")
+    val logData = sc.textFile(args(0))
 
     // 0. Load and parse
-    val logPattern = "(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d+)Z\\s\\S+\\s(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}):.+\\s\"(?:POST|GET)\\s(\\S+)\\sHTTP/".r
+    val logPattern = "(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d+)Z\\s\\S+\\s(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}):.+\\s\"(?:[A-Z]+)\\s(\\S+)\\sHTTP/".r
     val hits = logData
         .map( logPattern.findFirstMatchIn(_))
         .filter( !_.isEmpty) // filter out lines that haven't matched
@@ -30,7 +35,7 @@ object WebLogSessionize {
     // 2. Determine the average session time
 
     val sessionTimes = sessions
-      .map( session => { ((session._1 , session._3.last._2)) } ) // (ip, last session hit)
+      .map( session => { (session._1 , session._3.last._2) } ) // (ip, last session hit)
       .filter( _._2 > 0) // filter out single-hit sessions
       .cache()
 
@@ -44,7 +49,7 @@ object WebLogSessionize {
     // 4. Find the most engaged users
     val mostEngaged = sessionTimes.sortBy( _._2, false).take(10)
 
-    sessions.saveAsTextFile("../data/output")
+    sessions.saveAsTextFile(args(1))
   }
 
   val expirePeriod = Period.minutes( 30)
