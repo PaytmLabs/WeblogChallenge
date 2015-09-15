@@ -55,7 +55,7 @@ object WebLogessionizeOptimized {
     }) // ip -> [( startTime, endTime, [(url.hash1, url.hash2)] )]
     .flatMap( byIp => byIp._2.map( session => (byIp._1, session._1, session._2, session._3))) // ip, startTime, endTime, [(hash1,hash2)]
     .map( session => ( session._1, UUID.randomUUID().toString, session._3-session._2, session._4.size)) // start/end -> duration and number of unique urls, assign sessionId
-    .filter(_._2 > 0) // filter single hit sessions
+    .filter(_._3 > 0) // filter single hit sessions
     .cache() // ip, duration, [(hash1,hash2)]
 
     // 2. Determine the average session time
