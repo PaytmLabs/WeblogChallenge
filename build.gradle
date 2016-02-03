@@ -15,7 +15,7 @@ allprojects {
         scalaLibVersion = '2.11'
         
         scoptVersion = '3.3.0'
-	sparkVersion = '1.6.0'
+        sparkVersion = '1.6.0'
 
         junitVersion = '4.12'
         scalaTestVersion = '2.2.4'
@@ -24,9 +24,10 @@ allprojects {
     sourceCompatibility = "${javaVersionCompliance}"
     targetCompatibility = "${javaVersionCompliance}"
 
+    mainClassName = "org.matruss.weblog.WebLog"
+    project.version = "${versionProject}"
+
     repositories {
-        // Use 'maven central' for resolving your dependencies.
-        // You can declare any Maven/Ivy/file repository here.
         mavenCentral()
         maven { url "http://oss.sonatype.org/content/repositories/releases" }
         maven { url "http://conjars.org/repo" }
@@ -42,8 +43,8 @@ allprojects {
     }
     dependencies {
         scalalib("org.scala-lang:scala-library:${scalaVersion}")
-	
-	compile("org.apache.spark:spark-core_${scalaLibVersion}:${sparkVersion}")    
+
+        compile("org.apache.spark:spark-core_${scalaLibVersion}:${sparkVersion}")
     	compile("com.github.scopt:scopt_${scalaLibVersion}:${scoptVersion}")
 
     	testCompile("junit:junit:${junitVersion}")
