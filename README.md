@@ -22,7 +22,7 @@ The challenge is to make make analytical observations about the data using the d
 - MapReduce (Hadoop 2.x only)
 - Flink
 - Cascading, Cascalog, or Scalding
-- Hive
+
 If you need Hadoop, we suggest 
 HDP Sandbox:
 http://hortonworks.com/hdp/downloads/
