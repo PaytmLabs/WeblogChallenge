@@ -17,7 +17,7 @@ The challenge is to make make analytical observations about the data using the d
 
 
 ###Tools allowed (in no particular order):
-- Spark (any language, but prefer Scala)
+- Spark (any language, but prefer Scala)  **Not SparkSQL**
 - Pig
 - MapReduce (Hadoop 2.x only)
 - Flink
