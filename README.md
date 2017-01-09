@@ -14,7 +14,12 @@ The challenge is to make make analytical observations about the data using the d
 
 4. Find the most engaged users, ie the IPs with the longest session times
 
+##Additional questions for Machine Learning Engineer (MLE) candidates:
+1. Predict the expected load (requests/second) in the next minute
 
+2. Predict the session length for a given IP
+
+3. Predict the number of unique URL visits by a given IP
 
 ###Tools allowed (in no particular order):
 - Spark (any language, but prefer Scala)  **Not SparkSQL**
