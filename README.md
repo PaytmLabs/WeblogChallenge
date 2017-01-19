@@ -22,7 +22,7 @@ The challenge is to make make analytical observations about the data using the d
 3. Predict the number of unique URL visits by a given IP
 
 ###Tools allowed (in no particular order):
-- Spark (any language, but prefer Scala)  **Not SparkSQL**
+- Spark (any language, but prefer Scala or Java)
 - Pig
 - MapReduce (Hadoop 2.x only)
 - Flink
