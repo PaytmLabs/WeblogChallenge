@@ -3,7 +3,7 @@ This is an interview challenge for Paytm Labs. Please feel free to fork. Pull Re
 
 The challenge is to make make analytical observations about the data using the distributed tools below.
 
-##Processing & Analytical goals:
+## Processing & Analytical goals:
 
 1. Sessionize the web log by IP. Sessionize = aggregrate all page hits by visitor/IP during a fixed time window.
     https://en.wikipedia.org/wiki/Session_(web_analytics)
@@ -14,14 +14,14 @@ The challenge is to make make analytical observations about the data using the d
 
 4. Find the most engaged users, ie the IPs with the longest session times
 
-##Additional questions for Machine Learning Engineer (MLE) candidates:
+## Additional questions for Machine Learning Engineer (MLE) candidates:
 1. Predict the expected load (requests/second) in the next minute
 
 2. Predict the session length for a given IP
 
 3. Predict the number of unique URL visits by a given IP
 
-###Tools allowed (in no particular order):
+### Tools allowed (in no particular order):
 - Spark (any language, but prefer Scala or Java)
 - Pig
 - MapReduce (Hadoop 2.x only)
@@ -36,7 +36,7 @@ CDH QuickStart VM:
 http://www.cloudera.com/content/cloudera/en/downloads.html
 
 
-###Additional notes:
+### Additional notes:
 - You are allowed to use whatever libraries/parsers/solutions you can find provided you can explain the functions you are implementing in detail.
 - IP addresses do not guarantee distinct users, but this is the limitation of the data. As a bonus, consider what additional data would help make better analytical conclusions
 - For this dataset, complete the sessionization by time window rather than navigation. Feel free to determine the best session window time on your own, or start with 15 minutes.
@@ -45,7 +45,7 @@ http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/access-log
 
 
 
-##How to complete this challenge:
+## How to complete this challenge:
 
 A. Fork this repo in github
     https://github.com/PaytmLabs/WeblogChallenge
@@ -56,7 +56,7 @@ C. Place notes in your code to help with clarity where appropriate. Make it read
 
 D. Complete your work in your own github repo and send the results to us and/or present them during your interview.
 
-##What are we looking for? What does this prove?
+## What are we looking for? What does this prove?
 
 We want to see how you handle:
 - New technologies and frameworks
