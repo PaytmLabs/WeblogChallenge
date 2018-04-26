@@ -5,7 +5,7 @@ The challenge is to make make analytical observations about the data using the d
 
 ## Processing & Analytical goals:
 
-1. Sessionize the web log by IP. Sessionize = aggregrate all page hits by visitor/IP during a fixed time window.
+1. Sessionize the web log by IP. Sessionize = aggregrate all page hits by visitor/IP during a session.
     https://en.wikipedia.org/wiki/Session_(web_analytics)
 
 2. Determine the average session time
