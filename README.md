@@ -1,65 +1,32 @@
-# WeblogChallenge
-This is an interview challenge for Paytm Labs. Please feel free to fork. Pull Requests will be ignored.
+# WeblogChallenge  
+This is my solution for PaytmLabs Weblog Challenge.
+You can find the detailed description of the challenge in challenge_description.md
 
-The challenge is to make make analytical observations about the data using the distributed tools below.
-
-## Processing & Analytical goals:
-
-1. Sessionize the web log by IP. Sessionize = aggregrate all page hits by visitor/IP during a session.
-    https://en.wikipedia.org/wiki/Session_(web_analytics)
-
-2. Determine the average session time
-
-3. Determine unique URL visits per session. To clarify, count a hit to a unique URL only once per session.
-
-4. Find the most engaged users, ie the IPs with the longest session times
-
-## Additional questions for Machine Learning Engineer (MLE) candidates:
-1. Predict the expected load (requests/second) in the next minute
-
-2. Predict the session length for a given IP
-
-3. Predict the number of unique URL visits by a given IP
-
-## Tools allowed (in no particular order):
-- Spark (any language, but prefer Scala or Java)
-- Pig
-- MapReduce (Hadoop 2.x only)
-- Flink
-- Cascading, Cascalog, or Scalding
-
-If you need Hadoop, we suggest 
-HDP Sandbox:
-http://hortonworks.com/hdp/downloads/
-or 
-CDH QuickStart VM:
-http://www.cloudera.com/content/cloudera/en/downloads.html
+## Tools
+* Framework: Apache Spark
+* Language: Scala
+* Build Tool: SBT
+* IDE: IntelliJ IDEA
 
 
-### Additional notes:
-- You are allowed to use whatever libraries/parsers/solutions you can find provided you can explain the functions you are implementing in detail.
-- IP addresses do not guarantee distinct users, but this is the limitation of the data. As a bonus, consider what additional data would help make better analytical conclusions
-- For this dataset, complete the sessionization by time window rather than navigation. Feel free to determine the best session window time on your own, or start with 15 minutes.
-- The log file was taken from an AWS Elastic Load Balancer:
-http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/access-log-collection.html#access-log-entry-format
+## How to Run
+Simply run run.sh and provide the path to the data file as argument.  
+For efficiency purpose, if the input file is compressed in gz (i.e. ends with .gz), 
+it will be uncompressed before passing to Spark job.
 
+## Discussion
+In this challenge, we are dealing with webserver log data which specifically coming from 
+AWS (more information [here](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html#access-log-entry-format))
+. A core part of the solution is to sessionize users.   
+In my solution, I've taken time-oriented approach to sessionize clients, i.e. for each user, 
+if there is no request for X minutes, we assume user has terminated the session.
+In the solution X has been set to 15 minutes.
 
+Based on the challenge description, IP addresses do not guarantee distinct users. 
+Therefore, in the solution, client ip, port and browser information have been used to make a better assumption of a distinct user.
 
-## How to complete this challenge:
-
-A. Fork this repo in github
-    https://github.com/PaytmLabs/WeblogChallenge
-
-B. Complete the processing and analytics as defined first to the best of your ability with the time provided.
-
-C. Place notes in your code to help with clarity where appropriate. Make it readable enough to present to the Paytm Labs interview team.
-
-D. Complete your work in your own github repo and send the results to us and/or present them during your interview.
-
-## What are we looking for? What does this prove?
-
-We want to see how you handle:
-- New technologies and frameworks
-- Messy (ie real) data
-- Understanding data transformation
-This is not a pass or fail test, we want to hear about your challenges and your successes with this particular problem.
+ 
+## Result
+* average duration of all sessions: 563.11 seconds
+* most engaged ip address (without considering port and browser information): 119.81.61.166 which ws active for 672560 seconds
+* result of number of unique urls visited per session is also provided in the solution. Since the result is huge it cannot be presented here.
